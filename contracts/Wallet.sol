@@ -15,7 +15,7 @@ contract Wallet {
     }
 
     modifier tokenExist(bytes32 ticker) {
-        require(tokenMapping[ticker] != address(0), "Token not listed!");
+        require(tokenMapping[ticker].tokenAddress != address(0), "Token not listed!");
         _;
     }
 
