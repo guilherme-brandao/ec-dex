@@ -2,8 +2,9 @@ pragma solidity >=0.6.0 <0.9.0;
 
 import "../node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
-contract Wallet {
+contract Wallet is Ownable {
 
     //Torna safemath disponivel para todos os uint 256 types
     using SafeMath for uint256;
@@ -26,7 +27,7 @@ contract Wallet {
     // Mapping dos balances dos diferentes usuarios de acordo com o token
     mapping(address => mapping(bytes32 => uint256)) public balances;
 
-    function addToken(bytes32 ticker, address tokenAddress) external {
+    function addToken(bytes32 ticker, address tokenAddress) onlyOwner external {
         tokenMapping[ticker] = Token(ticker, tokenAddress);
         tokenList.push(ticker);
     }
