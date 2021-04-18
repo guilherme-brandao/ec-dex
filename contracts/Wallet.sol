@@ -56,4 +56,7 @@ contract Wallet is Ownable {
         } 
     }
 
+     function getBalance(bytes32 ticker) public view returns (uint) {
+        return balances[msg.sender][ticker];
+    }
 }
