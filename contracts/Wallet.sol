@@ -6,10 +6,8 @@ import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
 contract Wallet is Ownable {
 
-    //Torna safemath disponivel para todos os uint 256 types
     using SafeMath for uint256;
 
-    //Armazenar informaçoes dos tokens para poder interagir com seus contratos
     struct Token {
         bytes32 ticker;
         address tokenAddress;
@@ -23,8 +21,6 @@ contract Wallet is Ownable {
     mapping(bytes32 => Token) public tokenMapping;
     bytes32[] public tokenList;
 
-    // Utiliza-se byte32 para o ticker do TOKEN para poder perfornmar comparações de string
-    // Mapping dos balances dos diferentes usuarios de acordo com o token
     mapping(address => mapping(bytes32 => uint256)) public balances;
 
     function addToken(bytes32 ticker, address tokenAddress) onlyOwner external {
